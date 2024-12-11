@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  notification-service:
+  
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
+    #   args:
+    #     - APP_NAME=notification.service
+    image: app-notification:develop19
+    container_name: notification-service
+    # platform: linux/amd64
+    ports:
+      - "4004:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - ENV_DATABASE_USERNAME=daem
+      - ENV_DATABASE_PASSWORD="yyTEmB!1IoO0k}5"
+      - ENV_DATABASE_NAME=notification_service
+      - ENV_DATABASE_HOST=10.20.55.88
+      - ENV_DATABASE_PORT=5432
+      - ENV_DATABASE_DIALECT=postgres
+      - ENV_DATABASE_MIGRATION_TABLE_NAME=NOTIFICATION_MIGRATIONS_TABLE
+      - ENV_CACHE_HOST=notification-redis
+      - ENV_CACHE_PORT=6379
+      - ENV_CACHE_PASSWORD=development_pass
+      - ENV_NOTIFICATION_SERVICE_AMQP_URL=amqp://api:development_pass@notification-rabbitmq:5672
+      - ENV_MAIL_HOST_URL=smtp-relay.brevo.com
+      - ENV_MAIL_HOST_USERNAME=79eedc001@smtp-brevo.com
+      - ENV_MAIL_HOST_PASSWORD=w879j1EkJhZg26Ka
+      - ENV_MAIL_FROM=faizan.ahmad.info@gmail.com
+      - ENV_OTP_MOCK=true
+      - ENV_OTP_MOCK_KEY=123456
+      - ENV_OTP_RETRIES=3
+      - ENV_OTP_EXPIRY_PERIOD=180
+      - ENV_OTP_LOCK_PERIOD=180
+      - ENV_OTP_ENABLE_HASH=false
+      - ENV_RB_SYSTEM_MOCK=https://768934e0-7ae2-43e9-ad03-2b5d563d4b3f.mock.pstmn.io
+      - ENV_RB_SYSTEM=https://apimarketplace.riyadbank.com
+      - ENV_RB_SYSTEM_CLIENT_ID=1a68fd6fa4704017a1819d210cbfeb97
+      - ENV_RB_SYSTEM_CLIENT_SECRET=28bd81b1e99f4ab6a0e6b26e841e820b
+      - LOG_LEVEL=debug
+      - ENV_DATABASE_SSL=false
+      - ENV_MASTER_DATA_SERVICE_URL=https://api.dev.daem.ai
+      - ENV_PREFIX=api/v1/notification-service
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+
+  db:
+    image: postgres:13
+    container_name: notification-db
+    environment:
+      POSTGRES_USER: api
+      POSTGRES_PASSWORD: development_pass
+      POSTGRES_DB: notification_service
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    container_name: notification-redis
+    environment:
+      REDIS_PASSWORD: development_pass
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: notification-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: api
+      RABBITMQ_DEFAULT_PASS: development_pass
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  pgdata:

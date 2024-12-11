@@ -1,0 +1,36 @@
+{
+  "name": "@packages/database",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf build && rimraf coverage",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run build",
+    "test": "npm run test:ci",
+    "test:ci": "jest --ci --collectCoverage --maxWorkers 2 --passWithNoTests"
+  },
+  "engines": {
+    "node": ">=20.x",
+    "npm": ">=10.1.x"
+  },
+  "devEngines": {
+    "node": ">=20.x",
+    "npm": ">=10.1.x"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.3.10",
+    "@packages/config": "workspace:*",
+    "@packages/logger": "workspace:*",
+    "@packages/common": "workspace:*",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3",
+    "sequelize-typescript": "^2.1.6"
+  },
+  "devDependencies": {
+    "@types/sequelize": "^4.28.20"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "@backend/starterkit-service",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "author": {
+    "name": "Abdul Rehman",
+    "email": "f.ahmad@tarabut.com"
+  },
+  "scripts": {
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "build": "tsc -p tsconfig.build.json",
+    "start:test": "tsc-watch -p tsconfig.build.json --onSuccess \"node -r dotenv/config dist/main.js dotenv_config_path=../.env.test\"",
+    "start:prod": "node dist/main.js",
+    "lint": "eslint ./src --ext .ts",
+    "lint:fix": "eslint --fix ./src --ext .ts",
+    "db:migrate": "pnpm sequelize db:migrate",
+    "db:seed": "pnpm sequelize db:seed:all",
+    "db:undo": "pnpm sequelize-cli db:migrate:undo:all",
+    "db:rollback": "pnpm sequelize db:migrate:undo",
+    "db:setup": "pnpm run db:undo && pnpm run db:migrate && pnpm run db:seed"
+  },
+  "dependencies": {
+    "@packages/config": "workspace:*",
+    "@packages/common": "workspace:*",
+    "@packages/core": "workspace:*",
+    "@packages/database": "workspace:*"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  },
+  "_moduleAliases": {
+    "@modules": "dist/modules",
+    "@core": "dist/core",
+    "@common": "dist/common"
+  }
+}

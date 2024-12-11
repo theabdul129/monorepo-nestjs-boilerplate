@@ -1,0 +1,14 @@
+{
+  "name": "integration",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/integration/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm i"
+      }
+    }
+  }
+}

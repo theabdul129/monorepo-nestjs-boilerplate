@@ -1,0 +1,32 @@
+{
+  "name": "@packages/config",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf build && rimraf coverage",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run build",
+    "test": "npm run test:ci",
+    "test:ci": "jest --ci --collectCoverage --maxWorkers 2 --passWithNoTests"
+  },
+  "engines": {
+    "node": ">=20.x",
+    "npm": ">=10.1.x"
+  },
+  "devEngines": {
+    "node": ">=20.x",
+    "npm": ">=10.1.x"
+  },
+  "dependencies": {
+    "@nestjs/microservices": "^10.4.7",
+    "@nestjs/common": "^10.4.7",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "tslib": "^2.8.1",
+    "typescript": "^5.6.3"
+  }
+}

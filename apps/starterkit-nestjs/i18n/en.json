@@ -1,0 +1,8 @@
+{
+  "USER_NOT_FOUND": "",
+  "USER_LIST_RETERIVE": "List of all users.",
+  "USER_RETERIVE": "User successfully reterived.",
+  "USER_CREATED": "User successfully created.",
+  "USER_UPDATED": "User successfully updated.",
+  "USER_DELETED": "User successfully deleted."
+}

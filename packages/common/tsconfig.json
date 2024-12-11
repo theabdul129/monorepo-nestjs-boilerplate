@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ESNext"],
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "declaration": true,
+    "strict": true,
+    "pretty": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "paths": {
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@entities/*": [
+        "./src/entities/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@providers/*": [
+        "./src/providers/*"
+      ]
+    },
+  },
+  "exclude": ["node_modules", "build"]
+}

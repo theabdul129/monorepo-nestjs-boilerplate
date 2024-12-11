@@ -1,0 +1,56 @@
+{
+  "name": "@packages/core",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf build && rimraf coverage",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run build",
+    "test": "npm run test:ci",
+    "test:ci": "jest --ci --collectCoverage --maxWorkers 2 --passWithNoTests"
+  },
+  "engines": {
+    "node": ">=20.x",
+    "npm": ">=10.1.x"
+  },
+  "devEngines": {
+    "node": ">=20.x",
+    "npm": ">=10.1.x"
+  },
+  "dependencies": {
+    "@nestjs/cache-manager": "^2.1.1",
+    "@nestjs/common": "^10.4.7",
+    "@nestjs/event-emitter": "^2.1.1",
+    "@nestjs/terminus": "^10.2.3",
+    "@packages/common": "workspace:*",
+    "@packages/config": "workspace:*",
+    "@packages/logger": "workspace:*",
+    "amqp-connection-manager": "^4.1.14",
+    "amqplib": "^0.10.4",
+    "body-parser": "^1.20.2",
+    "cache-manager": "^5.3.1",
+    "cache-manager-redis-yet": "^4.1.2",
+    "compression": "^1.7.5",
+    "cookie-parser": "^1.4.7",
+    "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
+    "keycloak-connect": "^25.0.2",
+    "module-alias": "^2.2.3",
+    "nest-keycloak-connect": "^1.10.0",
+    "@keycloak/keycloak-admin-client": "18.0.2",
+    "axios": "^1.7.7"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cache-manager": "^4.0.6",
+    "@types/cache-manager-redis-store": "^2.0.1",
+    "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/hpp": "^0.2.6",
+    "tslib": "^2.8.1",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "starterkit-nestjs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/starterkit-nestjs/src",
+  "projectType": "application",
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm i"
+      }
+    }
+  }
+}
