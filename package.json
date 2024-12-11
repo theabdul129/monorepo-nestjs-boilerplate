@@ -1,6 +1,6 @@
 {
   "private": true,
-  "description": "Venture 4 SME backend",
+  "description": "BoilerPlate",
   "scripts": {
     "nx": "nx",
     "check:dependencies": "node ../../tools/dev-scripts/cmd-check-dependencies.js",
